@@ -39,7 +39,7 @@ export default function PropertiesPage() {
             <p className="eyebrow eyebrow--red">Properties</p>
             <h1>Our diversified real estate presence around the world.</h1>
             <p className="sectionHero__lead">
-              The live Hines properties page is a searchable catalog. This version recreates that
+              The live ATit properties page is a searchable catalog. This version recreates that
               structure with filter blocks, role taxonomy, and a curated set of featured assets.
             </p>
           </div>
@@ -58,7 +58,7 @@ export default function PropertiesPage() {
               </ul>
             </div>
             <div className="filterPanel__group">
-              <h3>Hines&apos; Role</h3>
+              <h3>ATit&apos;s Role</h3>
               <ul>
                 {roles.map((role) => (
                   <li key={role}>{role}</li>

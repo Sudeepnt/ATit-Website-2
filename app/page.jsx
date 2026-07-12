@@ -197,7 +197,7 @@ export default function Page() {
 
       <main id="home">
         <section className="shell intro">
-          <p className="eyebrow eyebrow--red">About Hines</p>
+          <p className="eyebrow eyebrow--red">About ATit</p>
           <div className="rule" />
           <h2>
             Invested in Land.

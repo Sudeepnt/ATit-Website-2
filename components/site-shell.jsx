@@ -66,12 +66,6 @@ function SocialYouTube() {
   );
 }
 
-const menuLinks = [
-  ...topMenuLinks,
-  { label: "Careers", href: "/careers" },
-  { label: "Investor Login", href: "/investor-login" },
-];
-
 export function Scene({ variant }) {
   return (
     <div className={`scene scene--${variant}`} aria-hidden="true">
@@ -111,8 +105,8 @@ export function SiteShell({ children }) {
   return (
     <div className="page" id="top">
       <header className="topbar shell">
-        <Link href="/" className="brand brand--image" aria-label="Hines home">
-          <Image src="/logo.webp" alt="Hines" width={368} height={322} priority className="brand__logo" />
+        <Link href="/" className="brand brand--image" aria-label="ATit home">
+          <Image src="/logo.webp" alt="ATit" width={368} height={322} priority className="brand__logo" />
         </Link>
         <nav className="desktopNav" aria-label="Primary">
           <Link href="/investment-management" className="desktopNav__link desktopNav__link--bold">
@@ -191,8 +185,8 @@ export function SiteShell({ children }) {
           aria-label="Site navigation"
         >
           <div className="menuOverlay__top shell">
-            <Link href="/" className="brand brand--image" aria-label="Hines home">
-              <Image src="/logo.webp" alt="Hines" width={368} height={322} priority className="brand__logo" />
+            <Link href="/" className="brand brand--image" aria-label="ATit home">
+              <Image src="/logo.webp" alt="ATit" width={368} height={322} priority className="brand__logo" />
             </Link>
             <button type="button" className="menuClose" aria-label="Close menu" onClick={closeMenu}>
               <IconClose className="menuClose__icon" />
@@ -201,7 +195,7 @@ export function SiteShell({ children }) {
 
           <div className="shell menuOverlay__simple">
             <nav className="menuOverlay__list" aria-label="Primary">
-              {menuLinks.map((link) => (
+              {topMenuLinks.map((link) => (
                 <Link key={link.href} href={link.href} onClick={closeMenu} className="menuOverlay__link">
                   {link.label}
                 </Link>

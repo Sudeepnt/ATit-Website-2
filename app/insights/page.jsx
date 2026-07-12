@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Scene, SiteShell } from "../../components/site-shell";
 
-const hinesightItems = [
+const atitInsightItems = [
   {
     title: "2026 Global Investment Outlook",
     subtitle: "A New Flight Path for Real Estate",
@@ -58,7 +58,7 @@ export default function InsightsPage() {
         <section className="shell editorialBlock">
           <div className="sectionIntro">
             <div className="rule" />
-            <h2>Hinesight</h2>
+            <h2>ATit Insights</h2>
             <p>
               Forward-looking analysis and deeper thought leadership across industries, sectors,
               geographies, and market cycles.
@@ -66,7 +66,7 @@ export default function InsightsPage() {
           </div>
 
           <div className="storyGrid storyGrid--wide">
-            {hinesightItems.map((item) => (
+            {atitInsightItems.map((item) => (
               <article key={item.title} className="storyCard">
                 <Scene variant={item.variant} />
                 <div className="storyCard__body">

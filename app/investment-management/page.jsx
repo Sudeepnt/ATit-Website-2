@@ -122,7 +122,7 @@ export default function InvestmentManagementPage() {
           <div className="rule" />
           <h2>Creating value through innovative real estate strategies for 69 years.</h2>
           <p>
-            At ATit we have a holistic approach to real estate investment management that creates a
+            ATit has a holistic approach to real estate investment management that creates a
             distinct advantage for our investors. Sophisticated trend analysis, unmatched local market
             knowledge, and deep operational expertise allow us to swiftly capitalize on opportunities and
             optimize every aspect of real estate to create the most value possible.
@@ -142,7 +142,7 @@ export default function InvestmentManagementPage() {
             </article>
           ))}
           <p className="imMetrics__notes">
-            <sup>1</sup> Includes both the global ATit organization and RIA AUM as of December 31, 2025
+              <sup>1</sup> Includes both the global ATit organization and RIA AUM as of December 31, 2025
             <br />
             <sup>2</sup> Includes 409 properties as of December 31, 2025
             <br />

@@ -40,7 +40,7 @@ export default function RealEstateServicesPage() {
             <p className="eyebrow eyebrow--red">Real Estate Services</p>
             <h1>Global Real Estate Platform</h1>
             <p className="sectionHero__lead">
-              Hines real estate services add value for clients and partners through development,
+              ATit real estate services add value for clients and partners through development,
               redevelopment, property management, engineering, and local operating expertise.
             </p>
           </div>
@@ -52,7 +52,7 @@ export default function RealEstateServicesPage() {
             <h2>The difference is in execution.</h2>
             <p>
               Successful assets are built from a combination of design discipline, operating rigor,
-              smarter technology, and market-specific judgment. This page mirrors the Hines
+              smarter technology, and market-specific judgment. This page mirrors the ATit
               structure by emphasizing platform depth, signature mixed-use work, and a sector-by-sector
               track record.
             </p>
@@ -63,7 +63,7 @@ export default function RealEstateServicesPage() {
               <p className="eyebrow eyebrow--red">Featured Project</p>
               <h3>The Evolution of Live, Work, Play</h3>
               <p>
-                CityCenterDC in Washington stands in for the kind of mixed-use district Hines uses
+                CityCenterDC in Washington stands in for the kind of mixed-use district ATit uses
                 to express the brand: a dense urban destination where retail, workplace, hospitality,
                 and public life are composed as one system.
               </p>

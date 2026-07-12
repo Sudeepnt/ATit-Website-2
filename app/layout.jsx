@@ -16,8 +16,8 @@ const ibmPlex = IBM_Plex_Sans({
 });
 
 export const metadata = {
-  title: "Hines",
-  description: "Hines real estate platform website clone.",
+  title: "ATit",
+  description: "ATit real estate platform website clone.",
 };
 
 export default function RootLayout({ children }) {

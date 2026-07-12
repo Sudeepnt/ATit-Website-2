@@ -4,13 +4,13 @@ const glance = [
   "$91.7B assets under management",
   "107.2M SF operating third-party property-level services",
   "4,638 team members worldwide",
-  "30 countries in which Hines operates",
+  "30 countries in which ATit operates",
   "65 strategic investment vehicles since 1993",
   "69 years of operations since 1957",
 ];
 
 const principles = [
-  "The Hines Standard is the benchmark for value creation, integrity, service, and quality.",
+  "The ATit Standard is the benchmark for value creation, integrity, service, and quality.",
   "Products and services are held to the highest standard appropriate to the mission.",
   "Employees are the clearest expression of the brand and its most valuable asset.",
   "A culture of respect, contribution, and accountability drives long-term performance.",
@@ -28,7 +28,7 @@ export default function AboutTheFirmPage() {
             <p className="eyebrow eyebrow--red">About the Firm</p>
             <h1>A leading global real estate investment manager.</h1>
             <p className="sectionHero__lead">
-              Hines owns and operates a large global portfolio across property types on behalf of a
+              ATit owns and operates a large global portfolio across property types on behalf of a
               diverse group of institutional and private wealth clients.
             </p>
           </div>
@@ -39,7 +39,7 @@ export default function AboutTheFirmPage() {
             <div className="rule" />
             <h2>Built to invest, develop, and manage at scale.</h2>
             <p>
-              This page mirrors the live Hines about route by combining company overview copy,
+              This page mirrors the live ATit about route by combining company overview copy,
               headline operating metrics, and principle-driven brand language in one long-form
               editorial layout.
             </p>
@@ -59,7 +59,7 @@ export default function AboutTheFirmPage() {
               <p className="eyebrow eyebrow--red">Our Vision</p>
               <h3>Be the best investor, partner, and manager in the world.</h3>
               <p>
-                The live Hines page pairs its company scale with a direct statement of purpose.
+                The live ATit page pairs its company scale with a direct statement of purpose.
                 This recreation does the same and uses a restrained editorial treatment instead of
                 turning the page into a marketing collage.
               </p>

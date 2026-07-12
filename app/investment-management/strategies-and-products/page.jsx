@@ -3,7 +3,7 @@ import { Scene, SiteShell } from "../../../components/site-shell";
 const vehicles = [
   {
     region: "Americas",
-    title: "Hines U.S. Property Partners",
+    title: "ATit U.S. Property Partners",
     meta: "Core / Core-Plus | Open-ended",
     body: "A diversified vehicle focused on high-quality living, industrial, office, mixed-use, and select niche sectors through research-led portfolio construction.",
   },
@@ -33,7 +33,7 @@ export default function StrategiesAndProductsPage() {
             <p className="eyebrow eyebrow--red">Investment Management</p>
             <h1>Strategies and Products</h1>
             <p className="sectionHero__lead">
-              Hines uses a range of strategies to pursue acquisition and development opportunities
+              ATit uses a range of strategies to pursue acquisition and development opportunities
               across property types, geographies, and risk profiles.
             </p>
           </div>
