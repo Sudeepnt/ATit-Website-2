@@ -103,6 +103,10 @@ button {
   height: 54px;
 }
 
+.brand__logo--topbar {
+  height: 43px;
+}
+
 .desktopNav {
   display: none;
   align-items: center;
@@ -357,6 +361,10 @@ h1 {
 
   .brand__logo {
     height: 62px;
+  }
+
+  .brand__logo--topbar {
+    height: 50px;
   }
 
   .desktopNav {
@@ -1215,6 +1223,24 @@ h1 {
   min-height: 220px;
 }
 
+.scene--photo {
+  background: #10212c;
+}
+
+.scene__image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.scene__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(16, 26, 34, 0.06), rgba(16, 26, 34, 0.14)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03), transparent 28%, transparent 72%, rgba(255, 255, 255, 0.03));
+  pointer-events: none;
+}
+
 .scene__a,
 .scene__b,
 .scene__c,
@@ -1896,6 +1922,10 @@ h1 {
 
   .brand__logo {
     height: 44px;
+  }
+
+  .brand__logo--topbar {
+    height: 35px;
   }
 
   .menuToggle {

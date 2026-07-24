@@ -106,7 +106,7 @@ export function SiteShell({ children }) {
     <div className="page" id="top">
       <header className="topbar shell">
         <Link href="/" className="brand brand--image" aria-label="ATit home">
-          <Image src="/logo.webp" alt="ATit" width={368} height={322} priority className="brand__logo" />
+          <Image src="/logo.webp" alt="ATit" width={294} height={258} priority className="brand__logo brand__logo--topbar" />
         </Link>
         <nav className="desktopNav" aria-label="Primary">
           <Link href="/investment-management" className="desktopNav__link desktopNav__link--bold">
