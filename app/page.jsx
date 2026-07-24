@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Scene } from "../components/site-shell";
 import { footerGroups, footerLegalLinks, topMenuLinks } from "../lib/site-data";
 
 const services = [
@@ -47,29 +48,6 @@ const stories = [
     variant: "containers",
   },
 ];
-
-const scenePhotos = {
-  city: {
-    src: "/buildings/empire-state.jpg",
-    alt: "Skyscrapers in a city skyline",
-  },
-  meeting: {
-    src: "/buildings/apartment-building.jpg",
-    alt: "Modern building facade with windows",
-  },
-  glass: {
-    src: "/buildings/glass-building.jpg",
-    alt: "Glass office building reflecting the sky",
-  },
-  airport: {
-    src: "/buildings/empire-state.jpg",
-    alt: "Urban skyline with tall buildings",
-  },
-  containers: {
-    src: "/buildings/apartment-building.jpg",
-    alt: "Contemporary residential building",
-  },
-};
 
 function IconArrow({ className = "" }) {
   return (
@@ -138,17 +116,6 @@ function SocialYouTube() {
       <rect x="3.6" y="6.2" width="16.8" height="11.6" rx="3" stroke="currentColor" strokeWidth="1.8" />
       <path d="M11 9.2 15 12l-4 2.8V9.2Z" fill="currentColor" />
     </svg>
-  );
-}
-
-function Scene({ variant }) {
-  const photo = scenePhotos[variant] || scenePhotos.city;
-
-  return (
-    <div className={`scene scene--${variant} scene--photo`} aria-hidden="true">
-      <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 960px) 50vw, 100vw" className="scene__image" />
-      <span className="scene__overlay" />
-    </div>
   );
 }
 

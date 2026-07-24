@@ -5,6 +5,53 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { footerGroups, footerLegalLinks, topMenuLinks } from "../lib/site-data";
 
+const scenePhotos = {
+  city: {
+    src: "/buildings/empire-state.jpg",
+    alt: "City skyline with tall buildings",
+  },
+  meeting: {
+    src: "/buildings/apartment-building.jpg",
+    alt: "Modern residential building facade",
+  },
+  glass: {
+    src: "/buildings/glass-building.jpg",
+    alt: "Glass office building reflecting the sky",
+  },
+  airport: {
+    src: "/buildings/empire-state.jpg",
+    alt: "Urban skyline at sunset",
+  },
+  containers: {
+    src: "/buildings/apartment-building.jpg",
+    alt: "Contemporary apartment building",
+  },
+  lobby: {
+    src: "/buildings/glass-building.jpg",
+    alt: "Tall glass building against a blue sky",
+  },
+  portrait: {
+    src: "/buildings/apartment-building.jpg",
+    alt: "Vertical view of a modern building facade",
+  },
+  tower: {
+    src: "/buildings/empire-state.jpg",
+    alt: "Tall skyscraper in the skyline",
+  },
+  asset: {
+    src: "/buildings/glass-building.jpg",
+    alt: "Commercial building with strong geometric lines",
+  },
+  street: {
+    src: "/buildings/apartment-building.jpg",
+    alt: "Residential building on a city street",
+  },
+  workstation: {
+    src: "/buildings/glass-building.jpg",
+    alt: "Glass tower and surrounding city buildings",
+  },
+};
+
 function IconClose({ className = "" }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
@@ -67,12 +114,12 @@ function SocialYouTube() {
 }
 
 export function Scene({ variant }) {
+  const photo = scenePhotos[variant] || scenePhotos.city;
+
   return (
-    <div className={`scene scene--${variant}`} aria-hidden="true">
-      <span className="scene__a" />
-      <span className="scene__b" />
-      <span className="scene__c" />
-      <span className="scene__d" />
+    <div className={`scene scene--${variant} scene--photo`} aria-hidden="true">
+      <Image src={photo.src} alt={photo.alt} fill sizes="100vw" className="scene__image" />
+      <span className="scene__overlay" />
     </div>
   );
 }

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { topMenuLinks } from "../../lib/site-data";
+import { Scene } from "../../components/site-shell";
 
 function IconArrow({ className = "" }) {
   return (
@@ -29,17 +29,6 @@ function IconMenuBars({ className = "" }) {
       <i />
       <i />
     </span>
-  );
-}
-
-function Scene({ variant }) {
-  return (
-    <div className={`scene scene--${variant}`} aria-hidden="true">
-      <span className="scene__a" />
-      <span className="scene__b" />
-      <span className="scene__c" />
-      <span className="scene__d" />
-    </div>
   );
 }
 
