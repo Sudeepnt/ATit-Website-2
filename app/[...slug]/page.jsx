@@ -96,8 +96,13 @@ export default function MenuPage() {
           </Link>
         </nav>
         <Link href="#menu" className="menuToggle" aria-label="Open menu section">
-          <span>MENU</span>
-          <IconMenuBars className="menuToggle__bars" />
+          <span className="menuToggle__bars" aria-hidden="true">
+            <i />
+          </span>
+          <span className="menuToggle__label">MENU</span>
+          <span className="menuToggle__bars" aria-hidden="true">
+            <i />
+          </span>
         </Link>
       </header>
 
@@ -134,8 +139,13 @@ export default function MenuPage() {
               <Image src="/logo.webp" alt="ATit" width={368} height={322} priority className="brand__logo" />
             </Link>
             <Link href="/" className="menuToggle menuToggle--close">
-              <span>MENU</span>
-              <IconMenuBars className="menuToggle__bars menuToggle__bars--close" />
+              <span className="menuToggle__bars" aria-hidden="true">
+                <i />
+              </span>
+              <span className="menuToggle__label">MENU</span>
+              <span className="menuToggle__bars" aria-hidden="true">
+                <i />
+              </span>
             </Link>
           </div>
 

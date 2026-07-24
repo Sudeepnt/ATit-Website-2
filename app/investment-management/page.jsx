@@ -91,8 +91,13 @@ export default function InvestmentManagementPage() {
           </Link>
         </nav>
         <button type="button" className="menuToggle" aria-expanded={menuOpen} onClick={() => setMenuOpen((v) => !v)}>
-          <span>MENU</span>
-          <IconMenuBars className="menuToggle__bars" />
+          <span className="menuToggle__bars" aria-hidden="true">
+            <i />
+          </span>
+          <span className="menuToggle__label">MENU</span>
+          <span className="menuToggle__bars" aria-hidden="true">
+            <i />
+          </span>
         </button>
       </header>
 

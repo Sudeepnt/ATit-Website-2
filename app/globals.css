@@ -67,7 +67,7 @@ button {
 }
 
 .shell {
-  width: min(1120px, calc(100% - 48px));
+  width: min(1120px, calc(100% - 76px));
   margin: 0 auto;
 }
 
@@ -147,18 +147,21 @@ button {
 
 .menuToggle {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 4px;
+  min-width: 42px;
   color: var(--red-strong);
   font-size: 0.98rem;
   font-weight: 700;
   letter-spacing: 0.05em;
+  line-height: 1;
 }
 
 .menuToggle__bars {
-  width: 34px;
-  display: grid;
-  gap: 6px;
+  width: 100%;
+  display: block;
 }
 
 .menuToggle__bars i {
@@ -195,6 +198,10 @@ button {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.eyebrow__brand {
+  text-transform: none;
 }
 
 .eyebrow--red {
@@ -322,7 +329,7 @@ h1 {
   width: 44px;
   height: 1px;
   background: var(--line);
-  margin: 0 0 40px;
+  margin: 0 0 20px;
 }
 
 .rule--center {
@@ -740,7 +747,12 @@ h1 {
   margin-top: 8px;
 }
 
-.footer__group a,
+.footer__group a {
+  color: inherit;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
 .menuGroup a {
   color: inherit;
   font-size: 1rem;
@@ -759,10 +771,14 @@ h1 {
 
 .footer__legal a {
   color: #54c0e8;
-  font-size: 0.86rem;
+  font-size: 0.774rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(180, 190, 194, 0.8);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
 }
 
 .footer__socials {
@@ -782,6 +798,54 @@ h1 {
 .footer__socials svg {
   width: 100%;
   height: 100%;
+}
+
+.cookieBanner {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 55;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 34px;
+  padding: 26px 36px 28px;
+  background: var(--red-strong);
+  color: #fff;
+  box-shadow: 0 -18px 42px rgba(9, 16, 23, 0.18);
+}
+
+.cookieBanner__copy {
+  max-width: 880px;
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.cookieBanner__copy a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cookieBanner__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.cookieBanner__actions button {
+  min-width: 72px;
+  min-height: 30px;
+  padding: 8px 18px;
+  background: #fff;
+  color: var(--red-strong);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.cookieBanner__actions button:hover {
+  background: #e9f2f4;
 }
 
 .menuOverlay {
@@ -1911,8 +1975,8 @@ h1 {
   .topbar,
   .menuOverlay__top {
     min-height: 86px;
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 26px;
+    padding-right: 26px;
   }
 
   .topbar {
@@ -1929,18 +1993,27 @@ h1 {
   }
 
   .menuToggle {
-    gap: 8px;
-    font-size: 0.82rem;
+    width: 42px;
+    gap: 4px;
+    padding: 4px 0;
+    font-size: 0.78rem;
     letter-spacing: 0.04em;
   }
 
   .menuToggle__bars {
-    width: 30px;
-    gap: 4px;
+    width: 90%;
   }
 
   .menuToggle__bars i {
     height: 3px;
+  }
+
+  .menuToggle__label {
+    font-size: 0.78rem;
+  }
+
+  .intro__lede {
+    font-size: clamp(1.233rem, 1.7vw, 1.573rem);
   }
 
   .hero__visualWrap,
@@ -1949,14 +2022,14 @@ h1 {
   }
 
   .hero__copy {
-    padding: 40px 18px 24px;
+    padding: 40px 26px 24px;
   }
 
   .intro,
   .news,
   .stories {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 26px;
+    padding-right: 26px;
   }
 
   .intro {
@@ -1976,8 +2049,8 @@ h1 {
   .footer__bottom,
   .menuOverlay__content,
   .menuOverlay__bottom {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 26px;
+    padding-right: 26px;
   }
 
   .intro h2,
@@ -1995,6 +2068,25 @@ h1 {
 
   .footer__legal {
     gap: 10px 16px;
+  }
+
+  .cookieBanner {
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px 26px 22px;
+  }
+
+  .cookieBanner__copy {
+    font-size: 0.84rem;
+    line-height: 1.48;
+  }
+
+  .cookieBanner__actions {
+    width: 100%;
+  }
+
+  .cookieBanner__actions button {
+    flex: 1;
   }
 }
 
@@ -2342,8 +2434,8 @@ h1 {
   .editorialBlock,
   .filterLayout,
   .cardMatrix {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 26px;
+    padding-right: 26px;
   }
 
   .sectionHero__copy {
@@ -2351,7 +2443,7 @@ h1 {
   }
 
   .sectionBand .shell {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 26px;
+    padding-right: 26px;
   }
 }

@@ -1,4 +1,5 @@
 import { Cormorant_Garamond, IBM_Plex_Sans } from "next/font/google";
+import { CookieBanner } from "../components/cookie-banner";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${cormorant.variable} ${ibmPlex.variable}`}>
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

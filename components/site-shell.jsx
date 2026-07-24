@@ -180,8 +180,13 @@ export function SiteShell({ children }) {
           aria-controls="site-menu"
           onClick={() => setMenuOpen((value) => !value)}
         >
-          <span>MENU</span>
-          <IconMenuBars className="menuToggle__bars" />
+          <span className="menuToggle__bars" aria-hidden="true">
+            <i />
+          </span>
+          <span className="menuToggle__label">MENU</span>
+          <span className="menuToggle__bars" aria-hidden="true">
+            <i />
+          </span>
         </button>
       </header>
 
