@@ -8,224 +8,64 @@
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
 <style>
-/* Same page, same city as the homepage hero. Text on the left, scene on the right. */
-:root{
-  color-scheme:light;
-  --paper:#FFFFFF; --ink:#13353E; --ink-2:#3B5359; --ink-3:#6A7F84; --rule:#D6E1E2; --accent:#13353E; --gold-2:#8E6E33;
-  --f-display:"Libre Baskerville",Georgia,"Times New Roman",serif;
-  --f-body:"Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
-}
+:root{color-scheme:light}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--paper);color:var(--ink-2);font:400 16px/1.65 var(--f-body);-webkit-font-smoothing:antialiased}
-.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(24px,4vw,48px)}
-h1,h2,h3{margin:0;color:var(--ink);font-family:var(--f-display);font-weight:400;text-wrap:balance}
-a{color:var(--ink);text-underline-offset:3px}
-.intro{padding:clamp(48px,8vw,88px) 0 clamp(32px,5vw,48px);display:grid;gap:16px}
-.brand{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-2)}
-h1{font-size:clamp(2rem,4.2vw,3rem);line-height:1.15;letter-spacing:-.015em}
-.intro p{margin:0;max-width:62ch;font-size:1.06rem}
-.jump{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:4px;font-size:.86rem;font-weight:600}
-
-.design{padding:clamp(36px,5vw,60px) 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,640px);gap:clamp(28px,4vw,64px);align-items:center;scroll-margin-top:12px}
-.num{font-family:var(--f-display);font-size:1.1rem;color:var(--gold-2);display:block;margin-bottom:6px}
-h2{font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.25;margin-bottom:12px}
-.change{margin:0 0 18px;font-size:.95rem;font-weight:500;color:var(--ink)}
-.read h3{font-family:var(--f-body);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-2);margin:16px 0 6px}
-.read p{margin:0;font-size:.95rem}
-.read .take{font-family:var(--f-display);font-size:1.05rem;line-height:1.55;color:var(--ink)}
-
-/* Identical to the homepage hero */
+body{margin:0;background:#FFFFFF;color:#13353E;font:400 16px/1.5 "Libre Baskerville",Georgia,"Times New Roman",serif}
+.grid{max-width:1320px;margin:0 auto;padding:clamp(24px,4vw,56px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,5vw,72px) clamp(24px,4vw,56px)}
+.design{display:grid;gap:12px;align-content:start}
+.num{font-size:clamp(1.5rem,2.4vw,2rem);line-height:1}
 .hero-art{position:relative;width:100%;aspect-ratio:523/340}
 .hs-gl{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(0deg,transparent,#000 4%,#000 96%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(0deg,transparent,#000 4%,#000 96%,transparent);mask-composite:intersect}
-.hs-ui{position:absolute;inset:0;pointer-events:none;font-family:var(--f-body)}
-.hs-steps{list-style:none;margin:0;padding:0;position:absolute;left:0;top:0;display:grid;gap:.05rem;pointer-events:auto}
-.hs-steps button{background:none;border:0;padding:.2rem 0;cursor:pointer;display:flex;gap:.55rem;align-items:baseline;font:600 .66rem var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);transition:color .3s}
-.hs-steps .hs-n{font-family:var(--f-mono);font-weight:400;letter-spacing:.04em}
-.hs-steps button:hover{color:var(--ink)}
-.hs-steps button[aria-current="step"]{color:var(--accent)}
-.hs-steps button[aria-current="step"] .hs-n{color:var(--gold-2)}
-.hs-cap{position:absolute;left:0;bottom:0;margin:0;max-width:12.5rem;text-shadow:0 0 5px var(--paper),0 0 10px var(--paper),0 0 16px var(--paper);font-size:.8rem;line-height:1.45;color:var(--ink-2)}
-.hs-cap b{display:block;font-family:var(--f-display);font-weight:400;font-size:1.15rem;line-height:1.3;color:var(--ink);margin-bottom:.15rem}
+.hs-ui{display:none}
 .nogl{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;font-size:.9rem}
-button:focus-visible,a:focus-visible{outline:2px solid var(--gold-2);outline-offset:2px}
-
-.group{padding:clamp(40px,6vw,72px) 0 clamp(20px,3vw,32px);border-top:1px solid var(--rule);display:grid;gap:10px}
-.group p{margin:0;max-width:62ch}
-.look{border-radius:2px;overflow:hidden}
-.look .hs-steps{left:12px;top:12px;background:var(--paper);padding:.45rem .7rem}
-.look .hs-cap{left:12px;bottom:12px;background:var(--paper);padding:.55rem .75rem;max-width:14rem;text-shadow:none}
-@media (max-width:560px){.look .hs-cap{max-width:11rem}}
-.ask{padding:clamp(36px,6vw,64px) 0 clamp(56px,8vw,96px);border-top:1px solid var(--rule);display:grid;gap:10px}
-.ask p{margin:0;max-width:60ch}
-@media (max-width:900px){.design{grid-template-columns:1fr}.scene{order:-1}}
-@media (max-width:560px){.hs-steps{display:none}.hs-cap{font-size:.68rem;max-width:9.5rem}.hs-cap b{font-size:.92rem}}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="intro">
-    <span class="brand">ATit Capital · Homepage</span>
-    <h1>Ten versions of the homepage city</h1>
-    <p>All ten are the same story: in a city, a plot is chosen, its title is checked, a crane builds on it, it fills with tenants, and it is looked after. Versions 1 to 5 keep the homepage look and change the building. Versions 6 to 10 give the same story a completely different look and feel. Tell us which one you prefer.</p>
-    <nav class="jump" aria-label="Jump to a version">
-      <a href="#design-1">1 The Tower</a>
-      <a href="#design-2">2 The Stepped Tower</a>
-      <a href="#design-3">3 The Pair</a>
-      <a href="#design-4">4 The White Tower</a>
-      <a href="#design-5">5 The Living Block</a>
-      <a href="#design-6">6 The Full City</a>
-      <a href="#design-7">7 Street Level</a>
-      <a href="#design-8">8 The Architect's Model</a>
-      <a href="#design-9">9 The Sketchbook</a>
-      <a href="#design-10">10 The Skyline</a>
-    </nav>
-  </header>
-
+<main class="grid">
   <article class="design" id="design-1">
-    <div class="read">
-      <span class="num">1</span>
-      <h2>The Tower</h2>
-      <p class="change">What's different: nothing. This is the version on the homepage now.</p>
-      <h3>What it says to a visitor</h3>
-      <p>One plot is picked out of the city and checked layer by layer. A single dark tower goes up on it, the floors light up, and the site is planted and looked after.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">One asset, chosen carefully and done properly.</p>
-    </div>
-    <div class="scene"><div class="hero-art" data-variant="tower"></div></div>
+    <span class="num">1</span>
+    <div class="hero-art look" data-look="night" style="background:#FFFFFF"></div>
   </article>
-
   <article class="design" id="design-2">
-    <div class="read">
-      <span class="num">2</span>
-      <h2>The Stepped Tower</h2>
-      <p class="change">What's different: the tower narrows in three stages, with a thin gold line at each step and trees on the ledges.</p>
-      <h3>What it says to a visitor</h3>
-      <p>The same story, with a building that has a wide, solid base and gets lighter as it climbs. It feels more like a landmark, and the planted ledges show care after the build.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">Solid foundations, and something crafted on top of them.</p>
-    </div>
-    <div class="scene"><div class="hero-art" data-variant="stepped"></div></div>
+    <span class="num">2</span>
+    <div class="hero-art" data-variant="stepped"></div>
   </article>
-
   <article class="design" id="design-3">
-    <div class="read">
-      <span class="num">3</span>
-      <h2>The Pair</h2>
-      <p class="change">What's different: two slimmer towers of different heights rise from one shared base.</p>
-      <h3>What it says to a visitor</h3>
-      <p>The same story, but the crane works across two towers at once. It reads less like a single project and more like a platform that holds more than one asset.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">One careful process, more than one asset.</p>
-    </div>
-    <div class="scene"><div class="hero-art" data-variant="pair"></div></div>
+    <span class="num">3</span>
+    <div class="hero-art look" data-look="ink" style="background:#FFFFFF"></div>
   </article>
-
   <article class="design" id="design-4">
-    <div class="read">
-      <span class="num">4</span>
-      <h2>The White Tower</h2>
-      <p class="change">What's different: same shape as the homepage tower, but white with fine dark floor lines instead of dark teal.</p>
-      <h3>What it says to a visitor</h3>
-      <p>The same story, in a quieter key. The building belongs to the white city around it, so the gold windows become the strongest thing on screen once tenants arrive.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">Calm, understated, and earning quietly.</p>
-    </div>
-    <div class="scene"><div class="hero-art" data-variant="white"></div></div>
+    <span class="num">4</span>
+    <div class="hero-art" data-variant="tower"></div>
   </article>
-
   <article class="design" id="design-5">
-    <div class="read">
-      <span class="num">5</span>
-      <h2>The Living Block</h2>
-      <p class="change">What's different: the homepage tower, but when it fills up, the windows across the city light up and more cars arrive.</p>
-      <h3>What it says to a visitor</h3>
-      <p>The same story, with a bigger ending. The light starts in the tower and spreads outward through the neighbouring buildings, so the asset is shown lifting everything around it.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">What they build makes the whole neighbourhood better.</p>
-    </div>
-    <div class="scene"><div class="hero-art" data-variant="alive"></div></div>
+    <span class="num">5</span>
+    <div class="hero-art look" data-look="skyline" style="background:#FFFFFF"></div>
   </article>
-
-  <section class="group">
-    <h2>Same story, a different look</h2>
-    <p>Still a city, still land being taken up and built on. Each of these five has its own style.</p>
-  </section>
-
   <article class="design" id="design-6">
-    <div class="read">
-      <span class="num">6</span>
-      <h2>The Full City</h2>
-      <p class="change">The look: the city fills the whole frame, edge to edge, with traffic on every road.</p>
-      <h3>What it says to a visitor</h3>
-      <p>A dense, busy city surrounds one empty plot. It gets marked, checked and built on, and the dark tower that rises becomes the one thing your eye goes to.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">In a crowded market, they find the one place worth building on.</p>
-    </div>
-    <div class="scene"><div class="hero-art look" data-look="night" style="background:#FFFFFF"></div></div>
+    <span class="num">6</span>
+    <div class="hero-art" data-variant="pair"></div>
   </article>
-
   <article class="design" id="design-7">
-    <div class="read">
-      <span class="num">7</span>
-      <h2>Street Level</h2>
-      <p class="change">The look: real perspective and long shadows. The camera starts high and comes down to street level.</p>
-      <h3>What it says to a visitor</h3>
-      <p>We look down on the city and pick out the plot. As the crane works, the camera comes down to eye level, so the finished building stands in front of you against the sky.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">Something real, being built in a real city.</p>
-    </div>
-    <div class="scene"><div class="hero-art look" data-look="golden" style="background:linear-gradient(180deg,#DDE8EA 0%,#FFFFFF 52%)"></div></div>
+    <span class="num">7</span>
+    <div class="hero-art look" data-look="golden" style="background:linear-gradient(180deg,#DDE8EA 0%,#FFFFFF 52%)"></div>
   </article>
-
   <article class="design" id="design-8">
-    <div class="read">
-      <span class="num">8</span>
-      <h2>The Architect's Model</h2>
-      <p class="change">The look: a white scale model of the city on a round dark teal base.</p>
-      <h3>What it says to a visitor</h3>
-      <p>It feels like standing around the table in a planning room. The city is plain white card, and the only thing with real colour is the building being added to it.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">They plan every detail before anything happens on the ground.</p>
-    </div>
-    <div class="scene"><div class="hero-art look" data-look="model" style="background:radial-gradient(ellipse at 50% 45%,#FFFFFF 0%,#EEF3F4 100%)"></div></div>
+    <span class="num">8</span>
+    <div class="hero-art" data-variant="white"></div>
   </article>
-
   <article class="design" id="design-9">
-    <div class="read">
-      <span class="num">9</span>
-      <h2>The Sketchbook</h2>
-      <p class="change">The look: the city as a hand-drawn ink sketch on white paper. Only the new building gets colour.</p>
-      <h3>What it says to a visitor</h3>
-      <p>The whole city is pen and ink. The chosen plot and the building rising on it are painted in, teal and then gold, so your eye goes straight to the one thing being made real.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">A considered, personal way of working, far from a generic developer.</p>
-    </div>
-    <div class="scene"><div class="hero-art look" data-look="ink" style="background:#FFFFFF"></div></div>
+    <span class="num">9</span>
+    <div class="hero-art look" data-look="model" style="background:radial-gradient(ellipse at 50% 45%,#FFFFFF 0%,#EEF3F4 100%)"></div>
   </article>
-
   <article class="design" id="design-10">
-    <div class="read">
-      <span class="num">10</span>
-      <h2>The Skyline</h2>
-      <p class="change">The look: a flat, side-on poster of the skyline in layers of pale blue-grey, with a gold sun climbing behind it.</p>
-      <h3>What it says to a visitor</h3>
-      <p>The city is seen from the side, with gaps in its skyline. The ground under one gap is examined, then a tower fills it and rises above its neighbours as the sun comes up.</p>
-      <h3>What they walk away with</h3>
-      <p class="take">They change the skyline, and they start from the ground.</p>
-    </div>
-    <div class="scene"><div class="hero-art look" data-look="skyline" style="background:#FFFFFF"></div></div>
+    <span class="num">10</span>
+    <div class="hero-art" data-variant="alive"></div>
   </article>
-
-  <section class="ask">
-    <h2>Which one do you prefer?</h2>
-    <p>Send back the number. If you like a detail from one and the building from another, say so and we can combine them.</p>
-  </section>
-</div>
+</main>
 
 <script src="/hero-variants.js?v=3"></script>
 <script src="/hero-looks.js?v=5"></script>
