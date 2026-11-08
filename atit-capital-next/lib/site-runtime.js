@@ -85,6 +85,19 @@
   window.addEventListener('load',()=>setTimeout(drawAll,0));
 
   // ---------- per-page widgets ----------
+  let heroStoryLoad=null;
+  function heroStory(p,later){
+    const host=$('#heroArt',p); if(!host)return;
+    let dead=false, stop=null;
+    const start=()=>{if(!dead&&window.ATHeroStory)stop=window.ATHeroStory(host);};
+    const load=()=>{
+      if(dead)return;
+      if(!heroStoryLoad)heroStoryLoad=new Promise((res,rej)=>{const s=document.createElement('script');s.src='/hero-story.js?v=1';s.async=true;s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+      heroStoryLoad.then(start,()=>{});
+    };
+    if(window.requestIdleCallback)requestIdleCallback(load,{timeout:1500});else setTimeout(load,400);
+    later.push(()=>{dead=true;if(stop)stop();});
+  }
   function carousel(p,later){
     const dots=$('#heroDots',p); if(!dots)return;
     const slides=$$('[data-slide]',p); let si=0, timer=null;
@@ -160,7 +173,7 @@
     $$('.head-links a').forEach(a=>a.classList.toggle('on',a.dataset.group===g));
     closeMenu();
     $$('.phero',p).forEach(ph=>{if(!$('canvas',ph)){const c=document.createElement('canvas');c.className='plotbg';c.dataset.land='plan';c.setAttribute('aria-hidden','true');ph.prepend(c);}});
-    carousel(p,cleanups); projects(p); thesis(p,cleanups); contact(p); motion(p,cleanups);
+    carousel(p,cleanups); heroStory(p,cleanups); projects(p); thesis(p,cleanups); contact(p); motion(p,cleanups);
     onScroll();
     requestAnimationFrame(drawAll);
     return true;

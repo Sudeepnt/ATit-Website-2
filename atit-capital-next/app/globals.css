@@ -25,8 +25,8 @@
   --i-ground:#F2F6F6; --i-line:#DAE4E5; --i-parcel:#FFFFFF; --i-road:#C7D4D6;
   --i-t:#FFFFFF; --i-l:#E2EBEC; --i-r:#C5D5D8; --i-ta:#2E5F6B; --i-la:#254750; --i-ra:#13353E;
   --i-gold-t:#F4EAD3; --i-gold-l:#E3D0A5; --i-gold-r:#CAAF75; --i-win:#9DB8BD; --i-win2:#84A2A8; --i-leaf:#A9C5B8;
-  --f-display:var(--font-serif),"Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  --f-body:var(--font-sans),"Hanken Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-display:var(--font-serif),"Libre Baskerville", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --f-body:var(--font-sans),"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --f-mono:var(--font-mono),"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --wrap:1240px;
   --rail:10px;
@@ -150,10 +150,10 @@ p{margin:0}
 .band .btn:not(.ghost){background:var(--band-accent);border-color:var(--band-accent);color:#13353E}
 .band .btn.ghost{border-color:var(--band-ink);color:var(--band-ink)}
 .band .btn.ghost:hover{background:var(--band-ink);color:var(--band)}
-.surface{background:var(--surface)}
+.surface{background:var(--paper)}
 
 /* page hero (interior) */
-.phero{background:var(--surface);padding-block:clamp(2.5rem,6vw,5rem) clamp(2.5rem,5vw,4.5rem);position:relative;overflow:hidden}
+.phero{background:var(--paper);padding-block:clamp(2.5rem,6vw,5rem) clamp(2.5rem,5vw,4.5rem);position:relative;overflow:hidden}
 .phero .wrap{display:grid;gap:1.4rem;position:relative;z-index:1}
 .phero h1{max-width:20ch}
 .phero .plotbg{position:absolute;right:-60px;top:0;height:100%;width:min(46vw,600px);opacity:.5;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%)}
@@ -283,7 +283,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:.95rem;min-width:660px}
 
 /* home hero: white, text left, isometric art right */
 .hero{position:relative;background:var(--paper);color:var(--ink);overflow:hidden;border-bottom:1px solid var(--rule-2)}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--paper) 0%,var(--surface) 100%)}
+.hero::before{content:"";position:absolute;inset:0;background:var(--paper)}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2rem;align-items:center;padding-block:clamp(2.5rem,6vw,4.5rem) 5.5rem;min-height:clamp(480px,64vh,620px)}
 .hero-art{min-width:0;max-width:640px;justify-self:end;width:100%}
 .slides{min-width:0;display:grid}
@@ -739,7 +739,7 @@ footer.site .btn:hover{background:#fff;border-color:#fff}
 .tp-banner .go{font-weight:700}
 .tp-banner:hover .go{text-decoration:underline}
 
-.tp-hero{background:linear-gradient(180deg,var(--paper),var(--surface));border-bottom:1px solid var(--rule-2)}
+.tp-hero{background:var(--paper);border-bottom:1px solid var(--rule-2)}
 .tp-hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:2.5rem;align-items:center;padding-block:clamp(2.5rem,6vw,5rem)}
 .tp-hero-copy{display:grid;gap:1.4rem;min-width:0}
 .tp-hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:1.04;letter-spacing:-.025em;color:var(--ink)}
@@ -750,7 +750,7 @@ footer.site .btn:hover{background:#fff;border-color:#fff}
 @media (max-width:900px){.tp-hero .wrap{grid-template-columns:1fr}.tp-artcap{text-align:left}}
 
 .tp-sec{padding-block:clamp(3.5rem,7vw,6rem)}
-.tp-alt{background:var(--surface)}
+.tp-alt{background:var(--paper)}
 .tp-band{background:var(--band);color:var(--band-ink)}
 .tp-h{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;margin-bottom:clamp(1.75rem,3.5vw,2.75rem)}
 .tp-h h2{font-size:clamp(1.9rem,3.6vw,3rem);color:var(--ink)}
@@ -916,3 +916,18 @@ footer.site .btn:hover{background:#fff;border-color:#fff}
 
 /* Next.js migration: hash targets land below the sticky header (was scrollTo(top - 90) in the hash router). */
 [id]{scroll-margin-top:90px}
+
+/* Homepage hero: WebGL story sits over the SVG, which stays as the fallback. */
+.hero-art{position:relative}
+.hs-gl{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(0deg,transparent,#000 4%,#000 96%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(0deg,transparent,#000 4%,#000 96%,transparent);mask-composite:intersect}
+.hero-art.gl-on > svg.iso{visibility:hidden}
+.hs-ui{position:absolute;inset:0;pointer-events:none;font-family:var(--f-body)}
+.hs-steps{list-style:none;margin:0;padding:0;position:absolute;left:0;top:0;display:grid;gap:.05rem;pointer-events:auto}
+.hs-steps button{background:none;border:0;padding:.2rem 0;cursor:pointer;display:flex;gap:.55rem;align-items:baseline;font:600 .66rem var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);transition:color .3s}
+.hs-steps .hs-n{font-family:var(--f-mono);font-weight:400;letter-spacing:.04em}
+.hs-steps button:hover{color:var(--ink)}
+.hs-steps button[aria-current="step"]{color:var(--accent)}
+.hs-steps button[aria-current="step"] .hs-n{color:var(--gold-2)}
+.hs-cap{position:absolute;left:0;bottom:0;margin:0;max-width:12.5rem;text-shadow:0 0 5px var(--paper),0 0 10px var(--paper),0 0 16px var(--paper);font-size:.8rem;line-height:1.45;color:var(--ink-2)}
+.hs-cap b{display:block;font-family:var(--f-display);font-weight:400;font-size:1.15rem;line-height:1.3;color:var(--ink);margin-bottom:.15rem}
+@media (max-width:560px){.hs-steps{display:none}.hs-cap{font-size:.68rem;max-width:9.5rem}.hs-cap b{font-size:.92rem}}
