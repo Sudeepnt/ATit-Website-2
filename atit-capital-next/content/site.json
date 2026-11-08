@@ -1,0 +1,177 @@
+{
+  "siteDescription": "ATit Capital: a Bengaluru real assets platform working with family offices, UHNWIs, HNIs, institutions and GCCs across land, development and real asset businesses.",
+  "pages": [
+    {
+      "id": "home",
+      "group": "home",
+      "title": null,
+      "description": "ATit Capital: a Bengaluru real assets platform working with family offices, UHNWIs, HNIs, institutions and GCCs across land, development and real asset businesses."
+    },
+    {
+      "id": "capital",
+      "group": "capital",
+      "title": "Capital Platform",
+      "description": "ATit Capital works alongside family offices, private wealth and institutions to source, diligence and deliver real asset opportunities across India. Every opportunity is backed by the teams that execute it, and every decision remains with the capital partner."
+    },
+    {
+      "id": "approach",
+      "group": "capital",
+      "title": "How We Underwrite",
+      "description": "Eleven gates. An opportunity passes one before it reaches the next. Most never reach a capital partner. That is the point."
+    },
+    {
+      "id": "opportunities",
+      "group": "capital",
+      "title": "Focus Areas",
+      "description": "We focus on select real asset categories in India where title, execution and capital meet, and where our operating platform gives us a distinct advantage."
+    },
+    {
+      "id": "partners",
+      "group": "capital",
+      "title": "Family Offices & Private Wealth",
+      "description": "Family offices, UHNWIs, HNIs and institutions each bring different objectives. Each receives the same standard of care: direct ownership, institutional reporting and the operating teams that deliver."
+    },
+    {
+      "id": "technology",
+      "group": "about",
+      "title": "Technology",
+      "description": "Land is valued by the area around it. YaavArea Intelligence is being built to read that area, through the people who live and work in it, before capital is committed."
+    },
+    {
+      "id": "operating",
+      "group": "operating",
+      "title": "For Occupiers & Owners",
+      "description": "Our operating platform brings infrastructure delivery, development management, transactions and advisory under one roof. Owners, occupiers and capital partners engage these teams directly, from the first title search to a fully leased building."
+    },
+    {
+      "id": "development",
+      "group": "operating",
+      "title": "Development & Development Management",
+      "description": "A project manager watches the site. A development manager owns the outcome. We are the second."
+    },
+    {
+      "id": "adl",
+      "group": "operating",
+      "title": "Acquisitions, Dispositions & Leasing",
+      "description": "Find it. Buy it. Lease it. Sell it. Because we also build and manage, our advice reflects what an asset costs to deliver and what it earns once it runs."
+    },
+    {
+      "id": "infrastructure",
+      "group": "operating",
+      "title": "Infrastructure Solutions",
+      "description": "Procurement, labour, contractor management, quality and certified billing, delivered by a single accountable team. We give owners one point of responsibility for everything that happens on site."
+    },
+    {
+      "id": "advisory",
+      "group": "operating",
+      "title": "Advisory",
+      "description": "Title, tax, structure, cross-border execution and succession. Our advisory team protects the value of real assets before a transaction, through it and for the generations that follow."
+    },
+    {
+      "id": "thesis",
+      "group": "thesis",
+      "title": "Our Thesis",
+      "description": "Capital is arriving, infrastructure is compounding and businesses are anchoring to real assets. India's next decade will be built on the ground."
+    },
+    {
+      "id": "projects",
+      "group": "projects",
+      "title": "Projects",
+      "description": "From a single-screen theatre to a 26-property family office portfolio, each project reflects the same commitment: local insight, disciplined execution and a long-term view of the asset."
+    },
+    {
+      "id": "about",
+      "group": "about",
+      "title": "About Us",
+      "description": "ATit Capital is a Bengaluru-based real assets firm. We bring capital partners, operating expertise and local insight together to create enduring value in Indian real assets."
+    },
+    {
+      "id": "careers",
+      "group": "about",
+      "title": "Careers",
+      "description": "We are a small team with a long horizon. The people who join now will shape how ATit Capital works for decades."
+    },
+    {
+      "id": "contact",
+      "group": "contact",
+      "title": "Contact",
+      "description": "Tell us what you hold, what you are considering and what you need. A founding partner reads every message and will respond personally."
+    },
+    {
+      "id": "disclosures",
+      "group": "contact",
+      "title": "Disclosures",
+      "description": "ATit Capital: a Bengaluru real assets platform working with family offices, UHNWIs, HNIs, institutions and GCCs across land, development and real asset businesses."
+    }
+  ],
+  "legacyHash": {
+    "home": "/",
+    "capital": "/capital",
+    "approach": "/approach",
+    "opportunities": "/opportunities",
+    "partners": "/partners",
+    "technology": "/technology",
+    "operating": "/operating",
+    "development": "/development",
+    "adl": "/adl",
+    "infrastructure": "/infrastructure",
+    "advisory": "/advisory",
+    "thesis": "/thesis",
+    "projects": "/projects",
+    "about": "/about",
+    "careers": "/careers",
+    "contact": "/contact",
+    "disclosures": "/disclosures",
+    "heroArt": "/#heroArt",
+    "heroPrev": "/#heroPrev",
+    "heroNext": "/#heroNext",
+    "heroDots": "/#heroDots",
+    "home-focus": "/#home-focus",
+    "isoArr1": "/#isoArr1",
+    "capital-models": "/capital#capital-models",
+    "approach-title": "/approach#approach-title",
+    "opp-auction": "/opportunities#opp-auction",
+    "opp-greenfield": "/opportunities#opp-greenfield",
+    "opp-brownfield": "/opportunities#opp-brownfield",
+    "opp-anchored": "/opportunities#opp-anchored",
+    "opp-distressed": "/opportunities#opp-distressed",
+    "partners-fo": "/partners#partners-fo",
+    "partners-uhnwi": "/partners#partners-uhnwi",
+    "partners-hni": "/partners#partners-hni",
+    "partners-inst": "/partners#partners-inst",
+    "partners-journey": "/partners#partners-journey",
+    "partners-governance": "/partners#partners-governance",
+    "gcc": "/operating#gcc",
+    "adv-title": "/advisory#adv-title",
+    "adv-tax": "/advisory#adv-tax",
+    "adv-nri": "/advisory#adv-nri",
+    "adv-portfolio": "/advisory#adv-portfolio",
+    "adv-succession": "/advisory#adv-succession",
+    "adv-transactions": "/advisory#adv-transactions",
+    "isoArr2": "/thesis#isoArr2",
+    "tp-reports": "/thesis#tp-reports",
+    "pjCount": "/projects#pjCount",
+    "pjGrid": "/projects#pjGrid",
+    "proj-theatre": "/projects#proj-theatre",
+    "proj-reno": "/projects#proj-reno",
+    "proj-portfolio": "/projects#proj-portfolio",
+    "proj-residence": "/projects#proj-residence",
+    "proj-litigated": "/projects#proj-litigated",
+    "proj-land": "/projects#proj-land",
+    "proj-hotel": "/projects#proj-hotel",
+    "about-loop": "/about#about-loop",
+    "about-principles": "/about#about-principles",
+    "about-leadership": "/about#about-leadership",
+    "about-history": "/about#about-history",
+    "about-stewardship": "/about#about-stewardship",
+    "enq": "/contact#enq",
+    "f-name": "/contact#f-name",
+    "f-org": "/contact#f-org",
+    "f-type": "/contact#f-type",
+    "f-int": "/contact#f-int",
+    "f-msg": "/contact#f-msg",
+    "enqOut": "/contact#enqOut",
+    "mailAddr": "/contact#mailAddr",
+    "copyMail": "/contact#copyMail"
+  }
+}
