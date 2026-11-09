@@ -75,7 +75,7 @@ a{color:inherit}
 header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--paper);border-bottom:1px solid var(--rule-2)}
 header.site .wrap{display:flex;align-items:center;gap:1.5rem;padding-block:.55rem}
 .brand{display:flex;align-items:baseline;gap:.6rem;text-decoration:none;flex:none}
-.brand .logo{height:40px;width:auto;display:block}
+.brand .logo{height:30px;width:auto;display:block}
 .brand .mark{font-family:var(--f-display);font-weight:400;font-size:2rem;letter-spacing:-.02em;color:var(--accent);line-height:1}
 .brand .sub{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 .head-links{display:flex;gap:1.75rem;margin-left:auto;align-items:center}
@@ -91,7 +91,7 @@ header.site .wrap{display:flex;align-items:center;gap:1.5rem;padding-block:.55re
 @keyframes ov{from{opacity:0}to{opacity:1}}
 .overlay .wrap{padding-block:1rem 3rem}
 .ov-top{display:flex;align-items:center;justify-content:space-between;padding-block:.25rem 2.5rem}
-.ov-top .mark{display:block;text-decoration:none}.ov-top .logo{height:44px;width:auto}
+.ov-top .mark{display:block;text-decoration:none}.ov-top .logo{height:35px;width:auto}
 .ov-close{background:none;border:0;color:#fff;cursor:pointer;font:700 .72rem var(--f-body);letter-spacing:.08em;display:flex;align-items:center;gap:.6rem}
 .ov-close svg{width:28px;height:28px}
 .ov-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:2rem 5rem}
@@ -457,7 +457,7 @@ footer.site h5{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transfor
 footer.site ul{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
 footer.site a{text-decoration:none;color:var(--band-ink-2)}
 footer.site a:hover{color:var(--band-ink)}
-footer.site .flogo{height:54px;width:auto}
+footer.site .flogo{height:43px;width:auto}
 footer.site .disc{border-top:1px solid var(--band-rule);margin-top:3rem;padding-top:1.5rem;font-size:.8rem;line-height:1.65;display:grid;gap:.75rem}
 footer.site .base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.78rem}
 @media (max-width:900px){footer.site .cols{grid-template-columns:1fr 1fr}footer.site .cols > :first-child{grid-column:1/-1}}
@@ -739,7 +739,7 @@ footer.site .btn:hover{background:#fff;border-color:#fff}
 .tp-hero-copy{display:grid;gap:1.4rem;min-width:0}
 .tp-hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:1.04;letter-spacing:-.025em;color:var(--ink)}
 .tp-intro{font-size:clamp(1.08rem,1.5vw,1.25rem);line-height:1.6;color:var(--ink-2);max-width:38ch}
-.tp-mark .logo{width:44px;height:44px;object-fit:contain}
+.tp-mark .logo{width:35px;height:35px;object-fit:contain}
 .tp-hero-art{min-width:0}
 .tp-artcap{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;color:var(--ink-3);margin-top:.5rem;text-align:right}
 @media (max-width:900px){.tp-hero .wrap{grid-template-columns:1fr}.tp-artcap{text-align:left}}
@@ -978,7 +978,7 @@ footer.site .btn:hover{background:#fff;border-color:#fff}
   .hero-ctrl{display:none}
   .hero .wrap{padding-bottom:3.5rem}
   header.site .wrap{padding-block:.25rem}
-  .brand .logo{height:30px}
+  .brand .logo{height:22.5px}
   .menu-btn{min-width:44px;min-height:44px;justify-content:center;gap:4px;padding:0}
   .menu-btn::before,.menu-btn::after{width:2.6rem;height:2px}
 }
