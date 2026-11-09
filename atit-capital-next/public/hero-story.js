@@ -1,19 +1,12 @@
 /* Homepage hero: "We source real assets, secure their title, build them, lease
    them and steward them", told as one WebGL scene. No dependencies.
    Every frame is a pure function of the timeline position t, so the story can
-   loop, jump to a chapter, or stay frozen on its last frame for reduced motion.
-   If WebGL2 is unavailable this exits and the SVG underneath stays in place. */
+   loop or stay frozen on its last frame for reduced motion.
+   If WebGL2 is unavailable this exits and the space stays empty. */
 (function () {
   'use strict';
 
   // ---------- timeline ----------
-  var CH = [
-    { at: 0.0, n: '01', name: 'Source', line: 'We read parcels across the market. Most never pass.' },
-    { at: 3.6, n: '02', name: 'Title', line: 'Title first. Every layer of ownership is read before anything else.' },
-    { at: 8.2, n: '03', name: 'Build', line: 'The team that recommends the asset is the team that builds it.' },
-    { at: 13.6, n: '04', name: 'Lease', line: 'Floor by floor, the asset starts to earn.' },
-    { at: 17.4, n: '05', name: 'Steward', line: 'Capital moves. The asset stays, and so do we.' }
-  ];
   var END = 23.2, TOTAL = 24.2, FROZEN = 22.8;
 
   // ---------- maths ----------
@@ -425,34 +418,6 @@
     }
 
     // ---------- story UI ----------
-    var ui = document.createElement('div');
-    ui.className = 'hs-ui';
-    var list = document.createElement('ol');
-    list.className = 'hs-steps';
-    var buttons = CH.map(function (c, i) {
-      var li = document.createElement('li'), b = document.createElement('button');
-      b.type = 'button';
-      b.innerHTML = '<span class="hs-n">' + c.n + '</span><span class="hs-t">' + c.name + '</span>';
-      b.addEventListener('click', function () { seek(reduced ? chapterEnd(i) : c.at); });
-      li.appendChild(b); list.appendChild(li);
-      return b;
-    });
-    var cap = document.createElement('p');
-    cap.className = 'hs-cap';
-    ui.appendChild(list); ui.appendChild(cap);
-
-    function chapterEnd(i) { return i < CH.length - 1 ? CH[i + 1].at - 0.05 : FROZEN; }
-    var active = -1;
-    function syncUI(t) {
-      var i = CH.length - 1;
-      while (i > 0 && t < CH[i].at) i--;
-      if (i !== active) {
-        active = i;
-        buttons.forEach(function (b, n) { if (n === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
-        cap.innerHTML = '<b>' + CH[i].name + '</b>' + CH[i].line;
-      }
-    }
-
     // ---------- loop ----------
     var t = reduced ? FROZEN : 0, last = 0, raf = 0, onscreen = true, dead = false, pAim = 0, painted = false;
     function resize() {
@@ -461,7 +426,7 @@
       if (canvas.width !== W || canvas.height !== Hh) { canvas.width = W; canvas.height = Hh; }
     }
     function frame() {
-      syncUI(t); draw(t);
+      draw(t);
       if (!painted) { painted = true; host.classList.add('gl-on'); }
     }
     function tick(now) {
@@ -477,10 +442,8 @@
       if (!reduced || Math.abs(pAim - pointer) > 0.001) raf = requestAnimationFrame(tick);
     }
     function wake() { if (!raf && !dead) raf = requestAnimationFrame(tick); }
-    function seek(v) { t = v; if (reduced) frame(); wake(); }
 
     host.appendChild(canvas);
-    host.appendChild(ui);
     resize();
     var ro = new ResizeObserver(function () { resize(); if (reduced) frame(); });
     ro.observe(host);
@@ -500,7 +463,7 @@
       document.removeEventListener('visibilitychange', wake);
       canvas.removeEventListener('webglcontextlost', lost);
       host.classList.remove('gl-on');
-      ui.remove(); canvas.remove();
+      canvas.remove();
       var ext = gl.getExtension('WEBGL_lose_context'); if (ext) ext.loseContext();
     }
     return stop;

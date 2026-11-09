@@ -17,8 +17,10 @@
 
   // ---------- menu ----------
   const overlay=$('#overlay'), openBtn=$('#openNav'), closeBtn=$('#closeNav');
-  function closeMenu(){overlay.classList.remove('show');openBtn.setAttribute('aria-expanded','false');document.body.style.overflow='';}
-  openBtn.addEventListener('click',()=>{overlay.classList.add('show');openBtn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';closeBtn.focus();});
+  function endMenu(){overlay.classList.remove('show','closing');document.body.style.overflow='';}
+  let menuTimer=0;
+  function closeMenu(){if(!overlay.classList.contains('show')||overlay.classList.contains('closing'))return;openBtn.setAttribute('aria-expanded','false');if(RM){endMenu();return;}overlay.classList.add('closing');menuTimer=setTimeout(endMenu,620);}
+  openBtn.addEventListener('click',()=>{clearTimeout(menuTimer);overlay.classList.remove('closing');overlay.classList.add('show');openBtn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';closeBtn.focus();});
   closeBtn.addEventListener('click',closeMenu);
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
   $$('.ov-main > li > button').forEach(b=>b.addEventListener('click',()=>{const li=b.parentElement;const o=li.classList.contains('open');$$('.ov-main > li').forEach(x=>x.classList.remove('open'));if(!o)li.classList.add('open');}));
@@ -100,10 +102,10 @@
     const start=()=>{if(!dead&&window.ATHeroStory)stop=window.ATHeroStory(host);};
     const load=()=>{
       if(dead)return;
-      if(!heroStoryLoad)heroStoryLoad=new Promise((res,rej)=>{const s=document.createElement('script');s.src='/hero-story.js?v=1';s.async=true;s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+      if(!heroStoryLoad)heroStoryLoad=new Promise((res,rej)=>{const s=document.createElement('script');s.src='/hero-story.js?v=2';s.async=true;s.onload=res;s.onerror=rej;document.head.appendChild(s);});
       heroStoryLoad.then(start,()=>{});
     };
-    if(window.requestIdleCallback)requestIdleCallback(load,{timeout:1500});else setTimeout(load,400);
+    load();
     later.push(()=>{dead=true;if(stop)stop();});
   }
   function carousel(p,later){
@@ -118,18 +120,115 @@
     go(0);restart();
     later.push(()=>clearInterval(timer));
   }
-  function projects(p){
+  const GLIDE={duration:680,easing:'cubic-bezier(.4,0,.2,1)'};
+  function projects(p,later){
     const g=$('#pjGrid',p); if(!g)return;
     const bs=$$('.pj-filters button',p), cards=$$('.pj-card',g), cnt=$('#pjCount',p);
-    bs.forEach(b=>b.addEventListener('click',()=>{const f=b.dataset.f; bs.forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false')); let n=0; cards.forEach(c=>{const on=f==='all'||c.dataset.tags.split(' ').includes(f); c.hidden=!on; if(on)n++;}); cnt.textContent=n+(n===1?' project':' projects');}));
+    const panel=new Map(cards.map(c=>[c,c.nextElementSibling])), open=new Set();
+    let moving=[], ghost=null, run=0;
+    // Browsers restart an animation when a hidden element is shown, so once a drawing has built it stays built.
+    $$('svg.iso',g).forEach(s=>{if(s.closest('.pj-detail'))s.classList.add('settled');});
+    const keepBuilt=()=>cards.forEach(c=>{const s=$('svg.iso',c);if(s&&s.classList.contains('play'))s.classList.add('settled');});
+    // The full view takes the card's place at the top of its row; nothing above it moves.
+    function seat(c){const d=panel.get(c),top=c.offsetTop;cards.find(x=>!x.hidden&&x.offsetTop===top).before(d);c.hidden=true;d.hidden=false;}
+    function relayout(){const list=cards.filter(c=>open.has(c));list.forEach(c=>{panel.get(c).hidden=true;c.hidden=false;});list.forEach(seat);}
+    function finish(c){const d=panel.get(c);open.delete(c);d.hidden=true;c.hidden=false;c.setAttribute('aria-expanded','false');}
+    function settle(){moving.forEach(a=>a.cancel());moving=[];if(ghost){ghost.remove();ghost=null;}g.classList.remove('pj-moving');document.documentElement.style.overflowAnchor='';}
+    const seen=()=>[...cards,...panel.values()].filter(e=>!e.hidden);
+    const inset=(small,large)=>`inset(${small.top-large.top}px ${large.right-small.right}px ${large.bottom-small.bottom}px ${small.left-large.left}px)`;
+    // Measure, change the layout once, then glide every piece from where it was.
+    function glide(change,out,inn,growing){
+      if(RM){settle();change();return;}
+      const box=g.getBoundingClientRect(), from=new Map(seen().map(e=>[e,e.getBoundingClientRect()])), was=from.get(out)||out.getBoundingClientRect();
+      const copy=out.cloneNode(true);
+      settle();
+      document.documentElement.style.overflowAnchor='none';
+      change();
+      const nowH=g.getBoundingClientRect().height, to=inn.getBoundingClientRect(), id=++run, add=(e,k,o)=>moving.push(e.animate(k,o||GLIDE));
+      g.classList.add('pj-moving');
+      copy.removeAttribute('id');copy.hidden=false;copy.classList.add('pj-ghost');copy.setAttribute('aria-hidden','true');copy.tabIndex=-1;
+      Object.assign(copy.style,{left:was.left-box.left+'px',top:was.top-box.top+'px',width:was.width+'px',height:was.height+'px'});
+      g.append(copy);ghost=copy;
+      add(g,[{height:box.height+'px'},{height:nowH+'px'}]);
+      seen().forEach(e=>{if(e===inn)return;const a=from.get(e);if(!a)return;const b=e.getBoundingClientRect(),x=a.left-b.left,y=a.top-b.top;if(Math.abs(x)>.5||Math.abs(y)>.5)add(e,[{transform:`translate(${x}px,${y}px)`},{transform:'translate(0,0)'}]);});
+      if(growing){
+        add(inn,[{clipPath:inset(was,to),opacity:0},{opacity:1,offset:.55},{clipPath:'inset(0px 0px 0px 0px)',opacity:1}]);
+        add(copy,[{opacity:1},{opacity:0,offset:.45},{opacity:0}]);
+      }else{
+        add(copy,[{clipPath:'inset(0px 0px 0px 0px)',opacity:1},{opacity:1,offset:.4},{clipPath:inset(to,was),opacity:0}]);
+        add(inn,[{opacity:0},{opacity:0,offset:.4},{opacity:1}]);
+      }
+      Promise.all(moving.map(a=>a.finished)).then(()=>{if(id===run)settle();}).catch(()=>{});
+    }
+    function show(c,keyboard){const d=panel.get(c);keepBuilt();const own=$('svg.iso',c);if(own)own.classList.add('settled');glide(()=>{seat(c);open.add(c);c.setAttribute('aria-expanded','true');},c,d,true);if(keyboard)d.focus({preventScroll:true});}
+    function shut(c,keyboard){const d=panel.get(c);glide(()=>{finish(c);relayout();},d,c,false);if(keyboard)c.focus({preventScroll:true});}
+    cards.forEach(c=>{
+      const d=panel.get(c);
+      c.setAttribute('aria-expanded','false');
+      c.addEventListener('click',e=>{e.preventDefault();show(c,e.detail===0);});
+      d.tabIndex=0;
+      d.addEventListener('click',()=>{if(!String(getSelection()))shut(c,false);});
+      d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();shut(c,true);}});
+    });
+    bs.forEach(b=>b.addEventListener('click',()=>{keepBuilt();settle();[...open].forEach(finish);const f=b.dataset.f; bs.forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false')); let n=0; cards.forEach(c=>{const on=f==='all'||c.dataset.tags.split(' ').includes(f); c.hidden=!on; if(on)n++;}); cnt.textContent=n+(n===1?' project':' projects');}));
+    let width=innerWidth;
+    const reflow=()=>{if(innerWidth===width)return;width=innerWidth;settle();relayout();};
+    // Links such as /projects#proj-reno arrive with that project open and in view.
+    const fromHash=()=>{const hash=decodeURIComponent(location.hash.slice(1)), target=hash&&$('#'+CSS.escape(hash),g), c=target&&cards.find(x=>panel.get(x)===target);if(!c)return;settle();if(!open.has(c)){seat(c);open.add(c);c.setAttribute('aria-expanded','true');}target.scrollIntoView({behavior:'auto',block:'start'});};
+    fromHash();
+    window.addEventListener('hashchange',fromHash);
+    window.addEventListener('resize',reflow);
+    later.push(()=>{settle();window.removeEventListener('hashchange',fromHash);window.removeEventListener('resize',reflow);});
   }
   function thesis(p,later){
     if(RM)return;
-    const els=$$('.tp-anim',p); if(!els.length)return;
-    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.remove('pre'); io.unobserve(e.target); } }),{threshold:.25});
-    els.forEach(el=>{ el.classList.add('pre'); io.observe(el); });
-    const t=setTimeout(()=>els.forEach(el=>el.classList.remove('pre')),8000);
-    later.push(()=>{io.disconnect();clearTimeout(t);});
+    // Numbers count up to exactly the text already on the page.
+    const NUM=/\d[\d,]*(?:\.\d+)?/g;
+    const like=(tok,v)=>{const dec=(tok.split('.')[1]||'').length;if(!tok.includes(','))return v.toFixed(dec);return v.toLocaleString(/^\d{1,2}(,\d{2})+,\d{3}/.test(tok)?'en-IN':'en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});};
+    const shown=(text,k)=>text.replace(NUM,tok=>like(tok,parseFloat(tok.replace(/,/g,''))*k));
+    const finals=new Map();
+    function count(el,wait){const final=finals.get(el);const t0=performance.now()+wait,D=1500;(function f(now){const k=Math.max(0,Math.min(1,(now-t0)/D));if(k>=1){el.textContent=final;return;}el.textContent=shown(final,1-Math.pow(1-k,3));requestAnimationFrame(f);})(performance.now());}
+    const blocks=$$('.tp-anim,.tp-stats > div,.tp-conv > div',p);
+    const counters=b=>$$(b.matches('.tp-anim')?'.tp-big,.c-big':'b',b);
+    blocks.forEach(b=>{
+      counters(b).forEach(el=>{finals.set(el,el.textContent);el.textContent=shown(el.textContent,0);});
+      if(!b.matches('.tp-anim'))return;
+      b.classList.add('pre');
+      $$('.grow,.growx',b).forEach((e,i)=>{e.style.transitionDelay=i*110+'ms';});
+      $$('.c-val,.c-gap',b).forEach((e,i)=>{e.style.transitionDelay=450+i*110+'ms';});
+      $$('.c-dot.on',b).forEach((e,i)=>{e.style.transitionDelay=i*20+'ms';});
+      $$('.c-pl',b).forEach((e,i)=>{e.style.transitionDelay=i*9+'ms';});
+      $$('.grow-arc',b).forEach(e=>{e.style.strokeDasharray='0 '+e.getAttribute('stroke-dasharray').split(' ')[1];});
+    });
+    function play(b){b.classList.remove('pre');$$('.grow-arc',b).forEach(e=>{e.style.strokeDasharray='';});counters(b).forEach((el,i)=>count(el,i*120));}
+    // Each block plays the first time it is reached, and never again on this visit.
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.unobserve(e.target);play(e.target);}}),{threshold:.2,rootMargin:'0px 0px -8% 0px'});
+    blocks.forEach(b=>io.observe(b));
+    const forPrint=()=>{blocks.forEach(b=>{b.classList.remove('pre');$$('.grow-arc',b).forEach(e=>{e.style.strokeDasharray='';});});finals.forEach((v,el)=>{el.textContent=v;});$$('.rv',p).forEach(e=>e.classList.add('in'));};
+    window.addEventListener('beforeprint',forPrint);
+    later.push(()=>{io.disconnect();window.removeEventListener('beforeprint',forPrint);});
+  }
+  function reports(p){
+    const more=$('#reportsMore',p); if(!more)return;
+    const list=$('.tp-reports',p), extra=$$('.tp-reports li[hidden]',p), labelMore=more.textContent, labelLess=more.dataset.less;
+    let shown=false, moving=[];
+    more.setAttribute('aria-expanded','false');
+    more.addEventListener('click',()=>{
+      const was=list.getBoundingClientRect().height;
+      moving.forEach(a=>a.cancel());moving=[];
+      shown=!shown;
+      more.textContent=shown?labelLess:labelMore;
+      more.setAttribute('aria-expanded',String(shown));
+      extra.forEach(li=>{li.hidden=!shown;});
+      if(RM)return;
+      const now=list.getBoundingClientRect().height;
+      if(!shown)extra.forEach(li=>{li.hidden=false;});
+      list.style.overflow='clip';
+      const a=list.animate([{height:was+'px'},{height:now+'px'}],GLIDE); moving.push(a);
+      extra.forEach(li=>moving.push(li.animate(shown?[{opacity:0},{opacity:0,offset:.2},{opacity:1}]:[{opacity:1},{opacity:0,offset:.7},{opacity:0}],GLIDE)));
+      const was2=shown;
+      a.finished.then(()=>{if(was2!==shown)return;if(!shown)extra.forEach(li=>{li.hidden=true;});list.style.overflow='';moving=[];}).catch(()=>{});
+    });
   }
   function contact(p){
     const f=$('#enq',p);
@@ -143,7 +242,7 @@
   }
 
   // ---------- motion ----------
-  const AUTO='.phero .wrap > *,.sec-head,.statement,.opp,.steps > li,.rule-list > li,.tbl-wrap,.person,.nextrow > a,.pj-card,.pj-detail,.g2 > .cell,.g3 > .cell,.g4 > .cell,.platforms > a,.case-art,.case-copy > *,.split > .stack,.prose > p,.notice,.panel,.offices > .cell,.stats > div,.explore > a';
+  const AUTO='.phero .wrap > *,.sec-head,.statement,.opp,.steps > li,.rule-list > li,.tbl-wrap,.person,.nextrow > a,.pj-card,.g2 > .cell,.g3 > .cell,.g4 > .cell,.platforms > a,.case-art,.case-copy > *,.split > .stack,.prose > p,.notice,.panel,.offices > .cell,.stats > div,.explore > a,.tp-h,.tp-summary,.tp-sub,.tp-rails > div,.tp-bb-art,.tp-tile,.tp-stats > div,.tp-conv-art,.tp-conv > div,.tp-focus > a,.tp-theme,.tp-sdg > div,.tp-note,.tp-closer,.tp-closer-sub,.tp-close .tp-src,.tp-close .actions,.tp-miles > div,.tp-contact a,.tp-disc';
   function countIn(root){
     const els=root.matches&&root.matches('[data-count]')?[root]:$$('[data-count]',root);
     els.forEach(el=>{if(el.dataset.done)return;el.dataset.done=1;const to=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),pre=el.dataset.pre||'',suf=el.dataset.suf||'';const fmt=v=>pre+v.toFixed(dec)+suf;const t0=performance.now(),D=1700;
@@ -181,7 +280,8 @@
     $$('.head-links a').forEach(a=>a.classList.toggle('on',a.dataset.group===g));
     closeMenu();
     $$('.phero',p).forEach(ph=>{if(!$('canvas',ph)){const c=document.createElement('canvas');c.className='plotbg';c.dataset.land='plan';c.setAttribute('aria-hidden','true');ph.prepend(c);}});
-    carousel(p,cleanups); heroStory(p,cleanups); projects(p); thesis(p,cleanups); contact(p); motion(p,cleanups);
+    const pageName=$('#pageName'); if(pageName){const here=$('.crumbs > span:last-child',p);pageName.textContent=here?here.textContent:'Home';}
+    carousel(p,cleanups); heroStory(p,cleanups); projects(p,cleanups); thesis(p,cleanups); reports(p); contact(p); motion(p,cleanups);
     onScroll();
     requestAnimationFrame(drawAll);
     return true;
