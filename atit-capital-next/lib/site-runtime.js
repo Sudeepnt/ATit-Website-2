@@ -30,6 +30,14 @@
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   tt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
+  // ---------- cookie notice ----------
+  const cb=$('#cookieBanner'), CK='atit-capital-cookie-notice';
+  let ckSet=false; try{ckSet=localStorage.getItem(CK)==='set';}catch(e){}
+  if(cb&&!ckSet){
+    cb.classList.add('show');
+    $$('button',cb).forEach(b=>b.addEventListener('click',()=>{try{localStorage.setItem(CK,'set');}catch(e){}cb.classList.remove('show');}));
+  }
+
   // ---------- procedural cadastral drawing ----------
   function rng(seed){let s=seed>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
   function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}

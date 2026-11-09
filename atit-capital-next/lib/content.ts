@@ -19,7 +19,7 @@ export function getPage(id: string) {
   return { ...meta, html: fs.readFileSync(path.join(dir, 'pages', `${id}.html`), 'utf8') };
 }
 
-export function chrome(name: 'header' | 'overlay' | 'footer') {
+export function chrome(name: 'header' | 'overlay' | 'footer' | 'cookie') {
   return fs.readFileSync(path.join(dir, 'chrome', `${name}.html`), 'utf8');
 }
 

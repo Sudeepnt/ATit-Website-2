@@ -47,6 +47,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <button className="to-top" id="toTop" type="button" suppressHydrationWarning>
           TOP ↑
         </button>
+        <aside
+          className="cookie-banner"
+          id="cookieBanner"
+          aria-label="Cookie notice"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: chrome('cookie') }}
+        />
         <script dangerouslySetInnerHTML={{ __html: siteScript() }} />
         <Navigator />
       </body>
